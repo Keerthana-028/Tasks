@@ -1,0 +1,10 @@
+This file contains a simple python script which is used to check whether the given string is palindrome or not.
+
+WORKING:
+ * In the code we use the ispalindrome(a) to check the input string 'a' is same when it is reversed.
+ * The input is taken from the user and the checks and print the statement.
+
+ USAGE:
+ *Run the script in the vs code by using python <file name>
+ *Enter the string you want to check.
+ *Atlast the output will  be shown in the terminal.
