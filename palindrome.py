@@ -1,35 +1,56 @@
-#It is a simple python script which is used to check whether the given string is palindrome or not.
+#  It is a simple python script which is used to check whether
+# the given string is palindrome or not.
+
+import re
+import pytest
+
 
 class Palindromeclass:
-    """
-    The class is used to check the given string is palindrome.
-    """
-
+    """The class is used to check if the given string is a palindrome."""
     def __init__(self, palindromeInput):
-        """It initialies the palindromeclass with the input string.
-        """
+        """Initialize the Palindromeclass with the input string."""
         self.palindromeInput = palindromeInput
-    #Defining function
+
     def palindromeChecker(self):
-        """check the input string is palindrome.
-        prints It is a panlindrome if it is same forwards and backwards,
-        Else it will print It is not a palindrome"""
-        #using if-else statement
-        if self.palindromeInput == self.palindromeInput[::-1]:
-            print("It is a Palindrome")
-        else:
-            print("It is not a palindrome")
+        """Check if the input string is a palindrome."""
+        cleaned_input = re.sub(
+            r'[^a-zA-Z0-9]', '', self.palindromeInput.lower()
+        )
+        return cleaned_input == cleaned_input[::-1]
+
 
 def main():
-    """It will runs the palindrome check .
-    And ask the user to give the input string,creates an instance of Palindromeclass
-    and call te palindromeChecker to check the input is palindrome or not
-    """
-    palindromeInput = input("enter the input: ")
+    """Run the palindrome check."""
+    palindromeInput = input("Enter the input: ")
     palindromeObj = Palindromeclass(palindromeInput=palindromeInput)
-    #using the function
-    return palindromeObj.palindromeChecker()
+    if palindromeObj.palindromeChecker():
+        print("It is a palindrome")
+    else:
+        print("It is not a palindrome")
+
 
 if __name__ == "__main__":
     main()
 
+
+def test_palindrome():
+    """Test the Palindromeclass palindromeChecker
+    method with various inputs."""
+    palindrome_obj = Palindromeclass("madam")
+    assert palindrome_obj.palindromeChecker() == True
+    palindrome_obj = Palindromeclass("amma")
+    assert palindrome_obj.palindromeChecker() == True
+    palindrome_obj = Palindromeclass("malayalam")
+    assert palindrome_obj.palindromeChecker() == True
+    palindrome_obj = Palindromeclass("1234321")
+    assert palindrome_obj.palindromeChecker() == True
+    palindrome_obj = Palindromeclass(
+        "Madam, I'm Adam!!"
+    )
+    assert palindrome_obj.palindromeChecker() == True
+    palindrome_obj = Palindromeclass("happy")
+    assert palindrome_obj.palindromeChecker() == False
+    palindrome_obj = Palindromeclass("sad")
+    assert palindrome_obj.palindromeChecker() == False
+    palindrome_obj = Palindromeclass("cat")
+    assert palindrome_obj.palindromeChecker() == False
