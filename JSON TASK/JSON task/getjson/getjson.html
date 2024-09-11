@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+    </script>
+    <style> 
+        body { 
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+        } 
+  
+        #output { 
+            background-color: #d0f721; 
+        } 
+    </style> 
+    <script> 
+        $(document).ready(function () { 
+            $("#btn").click(function (event) { 
+                $.getJSON("get.json", function (emp) { 
+                    $("#output").html("<p> name: "  
+                        + emp.name + "</p>"); 
+                    $("#output").append("<p>age : "  
+                        + emp.age + "</p>"); 
+                    $("#output").append("<p>salary: "  
+                        + emp.salary + "</p>"); 
+                }); 
+            }); 
+        }); 
+    </script> 
+</head> 
+  
+<body> 
+    <h2 style="color:green;"> 
+        GeeksforGeeks 
+    </h2> 
+  
+    <p> 
+        Click on the button to load  
+        data from emp.json file 
+    </p> 
+  
+    <div id="output"></div> 
+  
+    <input type="button" id="btn" 
+        value="Get Employee Data" /> 
+</body>  
+</html>
